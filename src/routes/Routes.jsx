@@ -3,6 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Root from "../layouts/Root";
 import Home from "../pages/Home";
 import AddChocolate from "../pages/AddChocolate";
+import UpdateChocolate from "../pages/UpdateChocolate";
 
 const Routes = createBrowserRouter([
     {
@@ -16,6 +17,10 @@ const Routes = createBrowserRouter([
             {
                 path: "/add-chocolate",
                 element: <AddChocolate/>
+            },
+            {
+                path: "/:id/edit",
+                element: <UpdateChocolate/>
             }
         ]
     }
