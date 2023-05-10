@@ -28,8 +28,7 @@ const UpdateChocolate = () => {
             },
             body: JSON.stringify(chocolate)
         })
-        .then(res => res.json()) 
-        .then(data => console.log(data))
+
     }
     return (
         <main>
