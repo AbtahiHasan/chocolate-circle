@@ -3,6 +3,7 @@ import chocolate from "/favicon.png"
 import { useEffect, useState } from 'react';
 import ChocolateCard from '../components/ChocolateCard';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
 const Home = () => {
     const [chocolates, setChocolates] = useState([])
 
@@ -11,6 +12,36 @@ const Home = () => {
         .then(res => res.json())
         .then(data => setChocolates(data))
     },[])
+
+    const deleteChocolate = (id, name) => {
+        fetch(`http://localhost:3000/${id}`, {
+            method: "DELETE"
+        })
+        .then(res => res.json())
+        .then(async (data) => {
+            if(data.deletedCount>0) {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                      )
+                    }
+                  })
+                
+            }
+        })
+    }
+
     return (
         <div className='mt-[50px]'>
             <Link to="/add-chocolate"><button className='flex items-center gap-2 border rounded p-3'><AiOutlinePlus/> <span>New Chocolate</span> <img src={chocolate} alt="" /></button></Link>
@@ -26,7 +57,7 @@ const Home = () => {
                 </thead>
                 <tbody>
                     {
-                        chocolates.map(chocolate => <ChocolateCard key={chocolate._id} chocolate={chocolate}/>)
+                        chocolates.map(chocolate => <ChocolateCard key={chocolate._id} chocolate={chocolate} deleteChocolate={deleteChocolate}/>)
                     }
                 </tbody>
             </table>

@@ -1,5 +1,6 @@
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const AddChocolate = () => {
     const addNewChocolate = (e) => {
@@ -19,7 +20,18 @@ const AddChocolate = () => {
             body: JSON.stringify(chocolate)
         })
         .then(res => res.json()) 
-        .then(data => console.log(data))
+        .then(data => {
+            if(data.insertedId) {
+                Swal.fire({
+                    title: '',
+                    text: "Data Inserted Successfully!",
+                    icon: 'success',
+                    confirmButtonColor: '#07CC66',
+                    confirmButtonText: 'ok'
+                  })
+                
+            }
+        })
     }
     return (
         <main>

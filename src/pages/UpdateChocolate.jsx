@@ -56,7 +56,7 @@ const UpdateChocolate = () => {
                 </div>
                 <div className="w-full my-5">
                     <span className="block font-bold">Category</span>
-                    <select defaultValue={category} className="w-full px-4 py-3 outline-0 border-2 bg-white mt-3" name="category" id="">
+                    <select className="w-full px-4 py-3 outline-0 border-2 bg-white mt-3" name="category" id="">
                         <option selected={category === "Premium" ? true : false} value="Premium">Premium</option>
                         <option selected={category === "dark chocolate" ? true : false} value="dark chocolate">dark chocolate</option>
                         <option selected={category === "white chocolate" ? true : false} value="white chocolate">white chocolate</option>
