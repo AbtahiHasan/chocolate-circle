@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.ui-container {
+    @apply max-w-[1240px] mx-auto px-3 
+}
